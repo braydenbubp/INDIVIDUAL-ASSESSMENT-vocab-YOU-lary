@@ -1,17 +1,39 @@
-import { getVocab } from '../../api/vocabData';
+import { getVocab, getSingleVocab, deleteVocab } from '../../api/vocabData';
 import { showVocab } from '../../pages/vocab';
-import { signOut } from '../../utils/auth';
+import addVocabForm from '../forms/addWord';
 
-// navigation events
-const navigationEvents = (user) => {
-  // LOGOUT BUTTON
-  document.querySelector('#logout-button')
-    .addEventListener('click', signOut);
+const domEvents = (user) => {
+  document.querySelector('#main-container').addEventListener('click', (e) => {
+    if (e.target.id.includes('delete-vocab')) {
+      // eslint-disable-next-line no-alert
+      if (window.confirm('Want to delete?')) {
+        const [, firebaseKey] = e.target.id.split('--');
 
-  // TODO: ALL BOOKS
-  document.querySelector('#all-vocab').addEventListener('click', () => {
-    getVocab(user.uid).then(showVocab);
+        deleteVocab(firebaseKey).then(() => {
+          getVocab(user.uid).then(showVocab);
+        });
+      }
+    }
+
+    if (e.target.id.includes('add-vocab-btn')) {
+      addVocabForm();
+    }
+
+    if (e.target.id.includes('edit-vocab-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getSingleVocab(firebaseKey).then((bookObj) => addVocabForm(bookObj));
+    }
+
+    if (e.target.id.includes('add-vocab-btn')) {
+      addVocabForm();
+    }
+    if (e.target.id.includes('edit-vocab-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getSingleVocab(firebaseKey).then((authObj) => addVocabForm(authObj));
+    }
   });
 };
 
-export default navigationEvents;
+export default domEvents;

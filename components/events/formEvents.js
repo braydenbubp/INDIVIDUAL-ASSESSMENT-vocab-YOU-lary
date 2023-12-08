@@ -6,15 +6,11 @@ const formEvents = (user) => {
     e.preventDefault();
     if (e.target.id.includes('submit-vocab')) {
       const payload = {
-        title: document.querySelector('#title').value,
-        description: document.querySelector('#description').value,
-        image: document.querySelector('#image').value,
-        price: document.querySelector('#price').value,
-        author_id: document.querySelector('#author_id').value,
-        sale: document.querySelector('#sale').checked,
-        uid: user.uid
+        new_vocab: document.querySelector('#new_vocab').value,
+        definition: document.querySelector('#definition').value,
+        posted_by: document.querySelector('#posted_by').value,
+        uid: user.uid,
       };
-
       createVocab(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
 
