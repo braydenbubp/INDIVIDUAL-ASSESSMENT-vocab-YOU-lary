@@ -21,8 +21,12 @@ const showVocab = (array) => {
     <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">${item.word}</h5>
+        <p>${item.defintion}</p>
         <i class="btn btn-success fas fa-eye" id="edit-vocab-btn--${item.firebaseKey}"></i>
         <i class="btn btn-danger fas fa-trash-alt" id="delete-vocab-btn--${item.firebaseKey}"></i>
+        <div class="card-footer text-body-secondary">
+        Posted by: ${item.posted_by}
+      </div>
       </div>
     </div>
     `;
