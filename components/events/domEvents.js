@@ -22,16 +22,7 @@ const domEvents = (user) => {
     if (e.target.id.includes('edit-vocab-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
 
-      getSingleVocab(firebaseKey).then((bookObj) => addVocabForm(bookObj));
-    }
-
-    if (e.target.id.includes('add-vocab-btn')) {
-      addVocabForm();
-    }
-    if (e.target.id.includes('edit-vocab-btn')) {
-      const [, firebaseKey] = e.target.id.split('--');
-
-      getSingleVocab(firebaseKey).then((authObj) => addVocabForm(authObj));
+      getSingleVocab(firebaseKey).then((vocabObj) => addVocabForm(vocabObj));
     }
   });
 };
