@@ -1,15 +1,18 @@
 import { createVocab, getVocab, updateVocab } from '../../api/vocabData';
 import { showVocab } from '../../pages/vocab';
+import timestamp from '../../utils/timestamp';
 
 const formEvents = (user) => {
   document.querySelector('#main-container').addEventListener('submit', (e) => {
     e.preventDefault();
     if (e.target.id.includes('submit-vocab')) {
       const payload = {
-        new_vocab: document.querySelector('#new_vocab').value,
+        word: document.querySelector('#word').value,
         definition: document.querySelector('#definition').value,
         posted_by: document.querySelector('#posted_by').value,
-        uid: user.uid,
+        vocab_type: document.querySelector('input[name="flexRadioDefault"]:checked').value,
+        time_submitted: timestamp,
+        uid: user.uid
       };
       createVocab(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
@@ -23,12 +26,10 @@ const formEvents = (user) => {
     if (e.target.id.includes('update-vocab')) {
       const [, firebaseKey] = e.target.id.split('--');
       const payload = {
-        title: document.querySelector('#title').value,
-        description: document.querySelector('#description').value,
-        image: document.querySelector('#image').value,
-        price: document.querySelector('#price').value,
-        author_id: document.querySelector('#author_id').value,
-        sale: document.querySelector('#sale').checked,
+        word: document.querySelector('#word').value,
+        definition: document.querySelector('#definition').value,
+        posted_by: document.querySelector('#posted_by').value,
+        vocab_type: document.querySelector('input[name="flexRadioDefault"]:checked').value,
         firebaseKey,
       };
 

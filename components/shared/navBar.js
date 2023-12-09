@@ -13,6 +13,12 @@ const navBar = () => {
             <li class="nav-item">
               <a class="nav-link" href="#" id="vocab">Vocab</a>
             </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#" id="Language">Language</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#" id="Tech">Tech</a>
+            </li>
             <li>
             <input
               class="form-control mr-sm-2"

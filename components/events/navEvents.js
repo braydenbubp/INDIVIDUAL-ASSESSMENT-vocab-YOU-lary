@@ -1,4 +1,4 @@
-import { getVocab } from '../../api/vocabData';
+import { filterLanguage, filterTech, getVocab } from '../../api/vocabData';
 import { showVocab } from '../../pages/vocab';
 import { signOut } from '../../utils/auth';
 
@@ -12,6 +12,13 @@ const navigationEvents = (user) => {
     getVocab(user.uid).then(showVocab);
   });
 
+  document.querySelector('#Tech').addEventListener('click', () => {
+    filterTech(user.uid).then(showVocab);
+  });
+
+  document.querySelector('#Language').addEventListener('click', () => {
+    filterLanguage(user.uid).then(showVocab);
+  });
   // STRETCH: SEARCH
   // document.querySelector('#search').addEventListener('keyup', (e) => {
   //   const searchValue = document.querySelector('#search').value.toLowerCase();
