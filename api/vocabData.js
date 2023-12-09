@@ -70,10 +70,42 @@ const updateVocab = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const filterTech = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/vocab.json?orderBy="uid"&equalTo="${uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const vocabType = Object.values(data).filter((item) => item.vocab_type === 'Tech');
+      resolve(vocabType);
+    })
+    .catch(reject);
+});
+
+const filterLanguage = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/vocab.json?orderBy="uid"&equalTo="${uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const vocabType = Object.values(data).filter((item) => item.vocab_type === 'Language');
+      resolve(vocabType);
+    })
+    .catch(reject);
+});
+
 export {
   getVocab,
   createVocab,
   getSingleVocab,
   deleteVocab,
   updateVocab,
+  filterTech,
+  filterLanguage
 };
