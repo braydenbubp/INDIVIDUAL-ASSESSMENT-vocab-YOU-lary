@@ -15,7 +15,7 @@ const addVocabForm = (obj = {}) => {
       </div>
       <div class="form-group">
         <label for="text">Posted By</label>
-        <input type="text" class="form-control" id="posted_by" placeholder="Posted By" value="${obj.posted_by || ''}" placeholder="Enter Email" required>
+        <input type="text" class="form-control" id="posted_by" placeholder="Posted By" value="${obj.posted_by || ''}"npm syar required>
       </div>
       <button type="submit" class="btn btn-primary mt-3">Submit Vocab</button>
     </form>`;
