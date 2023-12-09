@@ -1,6 +1,6 @@
 import { createVocab, getVocab, updateVocab } from '../../api/vocabData';
 import { showVocab } from '../../pages/vocab';
-import timestamp from '../../utils/timestamp';
+import formattedDate from '../../utils/timestamp';
 
 const formEvents = (user) => {
   document.querySelector('#main-container').addEventListener('submit', (e) => {
@@ -11,7 +11,7 @@ const formEvents = (user) => {
         definition: document.querySelector('#definition').value,
         posted_by: document.querySelector('#posted_by').value,
         vocab_type: document.querySelector('input[name="flexRadioDefault"]:checked').value,
-        time_submitted: timestamp,
+        time_submitted: formattedDate,
         uid: user.uid
       };
       createVocab(payload).then(({ name }) => {
